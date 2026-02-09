@@ -149,12 +149,13 @@ function App() {
           {inProgress.map((item) => (
             <div key={item.id} className="card">
               <textarea onChange={(e) => updateTask(item, 'inProgress', e.target.value)}>{item.text}</textarea>
-              
+
               <button onClick={() => moveTask(item, 'inProgress', 'done')}>{'>'}</button>
                             <button onClick={() => moveTask(item, 'inProgress', 'sprintBacklog')}>{'<'}</button>
               <button onClick={() => deleteTask('inProgress', item.id)}>X</button>
             </div>
           ))}
+
 
           <button onClick={() => addTask('inProgress')}>Add Item</button>
         </div>     

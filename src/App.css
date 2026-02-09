@@ -30,6 +30,10 @@ Button {
   padding:  7px;
 }
 
+.card {
+  padding: 10px;
+}
+
 .category {
   background-color: #dfdcdc;
   border-radius: 8px;
@@ -43,11 +47,6 @@ Button {
   color: #8e2727;
   border-bottom: 2px solid #8e2727;
 }
-
-.card {
-  padding: 10px;
-}
-
 
 .category:nth-child(1) textarea {
   border-bottom: 2px solid #8e2727;
