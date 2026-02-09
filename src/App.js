@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-
+import Category from './Category'
 // react state, context and nodejs, 3 branches
 
 
@@ -11,7 +11,7 @@ function App() {
   const [done, setDone] = useState([]);
 
 
-  async function addTask(category) {
+ function addTask(category) {
     switch(category) {
       case 'productBacklog':
         setProductBacklog(prev => [...prev, {text: '', id: Date.now()}]);
@@ -31,7 +31,7 @@ function App() {
     }  
   }
 
-    async function deleteTask(category, id) {
+   function deleteTask(category, id) {
     switch(category) {
       case 'productBacklog':
         setProductBacklog(prev => prev.filter(item => item.id !== id));
@@ -116,61 +116,46 @@ function App() {
       <h1>To-Do List</h1>
       <div className="categories">
 
-        <div className="category">
-          <h2>Product Backlog</h2>
-          
-          {productBacklog.map((item) => (
-            <div key={item.id} className="card">
-              <textarea onChange={(e) => updateTask(item, 'productBacklog', e.target.value)}>{item.text}</textarea>
-              <button onClick={() => moveTask(item, 'productBacklog', 'sprintBacklog')}>{'>'}</button>
-              <button onClick={() => deleteTask('productBacklog', item.id)}>X</button>
-            </div>
-          ))}
-          
-          <button onClick={() => addTask('productBacklog')}>Add Item</button>
-        </div>
+        <Category 
+          title="Product Backlog"
+          category={productBacklog}
+          onClickRight={(task) => moveTask(task, 'productBacklog', 'sprintBacklog')}
+          onClickLeft={null}
+          onDelete={(id) => deleteTask('productBacklog', id)}
+          updateTask={(task, newText) => updateTask(task, 'productBacklog', newText)}
+          addTask={() => addTask('productBacklog')}
+        />
 
-        <div className="category">
-          <h2>Sprint Backlog</h2>
-          {sprintBacklog.map((item) => (
-            <div key={item.id} className="card">
-              <textarea onChange={(e) => updateTask(item, 'sprintBacklog', e.target.value)}>{item.text}</textarea>
-              <button onClick={() => moveTask(item, 'sprintBacklog', 'inProgress')}>{'>'}</button>
-                            <button onClick={() => moveTask(item, 'sprintBacklog', 'productBacklog')}>{'<'}</button>
-              <button onClick={() => deleteTask('sprintBacklog', item.id)}>X</button>
-            </div>
-          ))}
-          <button onClick={() => addTask('sprintBacklog')}>Add Item</button>
-        </div>
+        <Category 
+          title="Sprint Backlog"
+          category={sprintBacklog}
+          onClickRight={(task) => moveTask(task, 'sprintBacklog', 'inProgress')}
+          onClickLeft={(task) => moveTask(task, 'sprintBacklog', 'productBacklog')}
+          onDelete={(id) => deleteTask('sprintBacklog', id)}
+          updateTask={(task, newText) => updateTask(task, 'sprintBacklog', newText)}
+          addTask={() => addTask('sprintBacklog')}
+        />
 
-        <div className="category">
-          <h2>In Progress</h2>
+        <Category 
+          title="In Progress"
+          category={inProgress}
+          onClickRight={(task) => moveTask(task, 'inProgress', 'done')}
+          onClickLeft={(task) => moveTask(task, 'inProgress', 'sprintBacklog')}
+          onDelete={(id) => deleteTask('inProgress', id)}
+          updateTask={(task, newText) => updateTask(task, 'inProgress', newText)}
+          addTask={() => addTask('inProgress')}
+        />
 
-          {inProgress.map((item) => (
-            <div key={item.id} className="card">
-              <textarea onChange={(e) => updateTask(item, 'inProgress', e.target.value)}>{item.text}</textarea>
+        <Category 
+          title="Done"
+          category={done}
+          onClickRight={null}
+          onClickLeft={(task) => moveTask(task, 'done', 'inProgress')}
+          onDelete={(id) => deleteTask('done', id)}
+          updateTask={(task, newText) => updateTask(task, 'done', newText)}
+          addTask={() => addTask('done')}
+        />
 
-              <button onClick={() => moveTask(item, 'inProgress', 'done')}>{'>'}</button>
-                            <button onClick={() => moveTask(item, 'inProgress', 'sprintBacklog')}>{'<'}</button>
-              <button onClick={() => deleteTask('inProgress', item.id)}>X</button>
-            </div>
-          ))}
-
-
-          <button onClick={() => addTask('inProgress')}>Add Item</button>
-        </div>     
-
-        <div className="category">
-          <h2>Done</h2>
-          {done.map((item) => (  
-            <div key={item.id} className="card">
-              <textarea onChange={(e) => updateTask(item, 'done', e.target.value)}>{item.text}</textarea>
-              <button onClick={() => moveTask(item, 'done', 'inProgress')}>{'<'}</button>
-              <button onClick={() => deleteTask('done', item.id)}>X</button>
-            </div>
-          ))}
-          <button onClick={() => addTask('done')}>Add Item</button>
-        </div>    
       </div>
     </div>
     </>
