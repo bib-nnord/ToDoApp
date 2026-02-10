@@ -1,4 +1,5 @@
-import React from "react";
+ 
+ import React from "react";
 
  export function addTask(addFunction) {
     addFunction(prev => [...prev, {text: '', id: Date.now()}]);

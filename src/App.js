@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import Category from './Components/Category'
-import { addTask, deleteTask, moveTask, updateTask } from './Components/Utils'
+import Category from './Components'
+import { addTask, deleteTask, moveTask, updateTask } from './Components'
 // react state, context and nodejs, 3 branches
 
 
