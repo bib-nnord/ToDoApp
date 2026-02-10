@@ -1,14 +1,9 @@
-import React, { useContext } from "react";
+import React, { createContext, useState, useContext } from "react";
 
+export const ContextWrapper = createContext();
 
-  export const productBacklog = createContext([])
-  export const sprintBacklog = createContext([])
-  export const inProgress = createContext([])
-  export const done = createContext([])
-
- export function addTask(context) {
-    useContext(context)
-    addFunction(prev => [...prev, {text: '', id: Date.now()}]);
+ export function addTask(addFunction) {
+      addFunction(prev => [...prev, {text: '', id: Date.now()}]);
   }
 
   export function deleteTask(deleteFunction, id) {

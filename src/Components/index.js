@@ -1,6 +1,6 @@
 import Category from './Category/Category'
-import { addTask, deleteTask, moveTask, updateTask } from './Utils/Utils'
+import { ContextWrapper, addTask, deleteTask, moveTask, updateTask } from './Utils/Utils'
 
 export default Category 
 
-export { addTask, deleteTask, moveTask, updateTask }
+export { ContextWrapper, addTask, deleteTask, moveTask, updateTask }
