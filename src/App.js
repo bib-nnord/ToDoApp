@@ -1,66 +1,64 @@
 import { useContext, createContext, useState} from 'react';
 import './App.css';
-import Category from './Components'
-import { ContextWrapper, addTask, deleteTask, moveTask, updateTask} from './Components'
-//react context
-function App() {
-  
+import Category from './Components';
+import { TaskProvider, TaskContext } from './Components';
 
-const [productBacklog, setProductBacklog] = useState([]);
-const [sprintBacklog, setSprintBacklog] = useState([]);
-const [inProgress, setInProgress  ] = useState([]);
-const [done, setDone] = useState([]);
-
+function AppContent() {
+  const { productBacklog, sprintBacklog, inProgress, done, addTask, deleteTask, moveTask, updateTask } = useContext(TaskContext);
 
   return (
-    <>
-      <ContextWrapper value = {{ productBacklog, sprintBacklog, inProgress, done }}>
-        <div className="app">
-          <h1>To-Do List</h1>
-          <div className="categories">
-            <Category 
-              title="Product Backlog"
-              category={productBacklog}
-              categorytext ='productBacklog'
-              onClickRight={(task) => moveTask(task, setProductBacklog, setSprintBacklog)}
-              onDelete={(id) => deleteTask(setProductBacklog, id)}
-              updateTask={(task, newText) => updateTask(task, setProductBacklog, newText)}
-              addTask={() => addTask(setProductBacklog)}
-            />
-            <Category 
-              title="Sprint Backlog"
-              category={sprintBacklog}
-              categorytext ='sprintBacklog'
-              onClickRight={(task) => moveTask(task, setSprintBacklog, setInProgress)}
-              onClickLeft={(task) => moveTask(task, setSprintBacklog, setProductBacklog)}
-              onDelete={(id) => deleteTask(setSprintBacklog, id)}
-              updateTask={(task, newText) => updateTask(task, setSprintBacklog, newText)}
-              addTask={() => addTask(setSprintBacklog)}
-            />
-            <Category 
-              title="In Progress"
-              category={inProgress}
-              categorytext ='inProgress'
-              onClickRight={(task) => moveTask(task, setInProgress, setDone)}
-              onClickLeft={(task) => moveTask(task, setInProgress, setSprintBacklog)}
-              onDelete={(id) => deleteTask(setInProgress, id)}
-              updateTask={(task, newText) => updateTask(task, setInProgress, newText)}
-              addTask={() => addTask(setInProgress)}
-            />
-            <Category 
-              title="Done"
-              category={done}
-              categorytext ='done'
-              onClickLeft={(task) => moveTask(task, setDone, setInProgress)}
-              onDelete={(id) => deleteTask(setDone, id)}
-              updateTask={(task, newText) => updateTask(task, setDone, newText)}
-              addTask={() => addTask(setDone)}
-            />
-          </div>
-        </div>
-          
-      </ContextWrapper>
-    </>
+    <div className="app">
+      <h1>To-Do List</h1>
+      <div className="categories">
+        <Category 
+          title="Product Backlog"
+          category={productBacklog}
+          categorytext="productBacklog"
+          onClickRight={(task) => moveTask(task, 'productBacklog', 'sprintBacklog')}
+          onDelete={(id) => deleteTask('productBacklog', id)}
+          updateTask={(task, newText) => updateTask(task, 'productBacklog', newText)}
+          addTask={() => addTask('productBacklog')}
+        />
+        <Category 
+          title="Sprint Backlog"
+          category={sprintBacklog}
+          categorytext="sprintBacklog"
+          onClickRight={(task) => moveTask(task, 'sprintBacklog', 'inProgress')}
+          onClickLeft={(task) => moveTask(task, 'sprintBacklog', 'productBacklog')}
+          onDelete={(id) => deleteTask('sprintBacklog', id)}
+          updateTask={(task, newText) => updateTask(task, 'sprintBacklog', newText)}
+          addTask={() => addTask('sprintBacklog')}
+        />
+        <Category 
+          title="In Progress"
+          category={inProgress}
+          categorytext="inProgress"
+          onClickRight={(task) => moveTask(task, 'inProgress', 'done')}
+          onClickLeft={(task) => moveTask(task, 'inProgress', 'sprintBacklog')}
+          onDelete={(id) => deleteTask('inProgress', id)}
+          updateTask={(task, newText) => updateTask(task, 'inProgress', newText)}
+          addTask={() => addTask('inProgress')}
+        />
+        <Category 
+          title="Done"
+          category={done}
+          categorytext="done"
+          onClickLeft={(task) => moveTask(task, 'done', 'inProgress')}
+          onDelete={(id) => deleteTask('done', id)}
+          updateTask={(task, newText) => updateTask(task, 'done', newText)}
+          addTask={() => addTask('done')}
+        />
+      </div>
+    </div>
+  );
+}
+
+//i dont really understand why i need to make a separate function for this, but it doesnt recognize the context if i wrap the content of "appcontent" in a taskprovider
+function App() {
+  return (
+    <TaskProvider>
+      <AppContent />
+    </TaskProvider>
   );
 }
 

@@ -1,6 +1,5 @@
 import React, { createContext, useState, useContext } from "react";
 
-export const ContextWrapper = createContext();
 
  export function addTask(addFunction) {
       addFunction(prev => [...prev, {text: '', id: Date.now()}]);
