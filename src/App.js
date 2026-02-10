@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import { useContext } from 'react';
 import './App.css';
 import Category from './Components/Category'
-import { addTask, deleteTask, moveTask, updateTask } from './Components/Utils'
-// react state, context and nodejs, 3 branches
+import { addTask, deleteTask, moveTask, updateTask, productBacklog, sprintBacklog, inProgress, done} from './Components/Utils'
+//react context
 
 
 function App() {
-  const [productBacklog, setProductBacklog] = useState([]);
-  const [sprintBacklog, setSprintBacklog] = useState([]);
-  const [inProgress, setInProgress  ] = useState([]);
-  const [done, setDone] = useState([]);
   
   return (
     <>
