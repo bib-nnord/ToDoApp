@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import Category from './Category'
+import Category from './Components/Category'
 // react state, context and nodejs, 3 branches
 
 
@@ -52,6 +52,7 @@ function App() {
   }
 
   function moveTask(task, fromCategory, toCategory) {
+    // Remove from old category
     switch(fromCategory) {
       case 'productBacklog':
         setProductBacklog(prev => prev.filter(item => item.id !== task.id));
@@ -68,20 +69,21 @@ function App() {
       default:
         console.log("error, nonexistent category");
         break;
-    }  
+    }
 
+    // Add to new category - preserve the task object completely
     switch(toCategory) {
       case 'productBacklog':
-        setProductBacklog(prev => [...prev, task]);
+        setProductBacklog(prev => [...prev, {...task}]);
         break;
       case 'sprintBacklog':
-        setSprintBacklog(prev => [...prev, task]);
+        setSprintBacklog(prev => [...prev, {...task}]);
         break;
       case 'inProgress':
-        setInProgress(prev => [...prev, task]);
+        setInProgress(prev => [...prev, {...task}]);
         break;
       case 'done':
-        setDone(prev => [...prev, task]);
+        setDone(prev => [...prev, {...task}]);
         break;
       default:
         console.log("error, wrong category");
@@ -119,6 +121,7 @@ function App() {
         <Category 
           title="Product Backlog"
           category={productBacklog}
+          categorytext ='productBacklog'
           onClickRight={(task) => moveTask(task, 'productBacklog', 'sprintBacklog')}
           onClickLeft={null}
           onDelete={(id) => deleteTask('productBacklog', id)}
@@ -129,6 +132,7 @@ function App() {
         <Category 
           title="Sprint Backlog"
           category={sprintBacklog}
+          categorytext ='sprintBacklog'
           onClickRight={(task) => moveTask(task, 'sprintBacklog', 'inProgress')}
           onClickLeft={(task) => moveTask(task, 'sprintBacklog', 'productBacklog')}
           onDelete={(id) => deleteTask('sprintBacklog', id)}
@@ -139,6 +143,7 @@ function App() {
         <Category 
           title="In Progress"
           category={inProgress}
+          categorytext ='inProgress'
           onClickRight={(task) => moveTask(task, 'inProgress', 'done')}
           onClickLeft={(task) => moveTask(task, 'inProgress', 'sprintBacklog')}
           onDelete={(id) => deleteTask('inProgress', id)}
@@ -149,6 +154,7 @@ function App() {
         <Category 
           title="Done"
           category={done}
+          categorytext ='done'
           onClickRight={null}
           onClickLeft={(task) => moveTask(task, 'done', 'inProgress')}
           onDelete={(id) => deleteTask('done', id)}
