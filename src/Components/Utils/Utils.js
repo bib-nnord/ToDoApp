@@ -5,11 +5,11 @@
     addFunction(prev => [...prev, {text: '', id: Date.now()}]);
   }
 
-   export function addBoard(addBoardFunction) {
-    addBoardFunction(prev => [...prev, {text: '', id: Date.now()}]);
+   export function addBoard(addBoardFunction, boardText) {
+    addBoardFunction(prev => [...prev, {text: boardText, id: Date.now()}]);
   }
 
-  export function deleteTask(deleteFunction, id) {
+  export function onDelete(deleteFunction, id) {
         deleteFunction(prev => prev.filter(item => item.id !== id));
   }
 
@@ -18,6 +18,8 @@
         toFunction(prev => [...prev, {...task}]); 
   }
 
-  export function updateTask(task, updateFunction, newText) {
+  export function onUpdate(task, updateFunction, newText) {
         updateFunction(prev => prev.map(item => item.id === task.id ? {...item, text: newText} : item));
   }
+
+  

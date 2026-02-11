@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import Category from './Components'
-import { addTask, deleteTask, moveTask, updateTask } from './Components'
+import { addTask, onDelete, moveTask, onUpdate, addBoard, SidePanel, deleteBoard, updateBoard} from './Components'
 // react state, context and nodejs, 3 branches
 
 
@@ -14,10 +14,11 @@ function App() {
     <>
       <div className="app">
           <SidePanel
-          />
-
-          <CategoryList
-          boardtitle="Todo"
+          boardList={boards}
+          addBoard={(boardText) => addBoard(setBoards, boardText)}
+          deleteBoard={(id) => onDelete(setBoards, id)}
+          updateBoard={(board, newText) => onUpdate(board, setBoards, newText)}
+          //selectBoard={(id) => selectBoard(id)}
           />
       </div>
     </>
