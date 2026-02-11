@@ -1,4 +1,5 @@
 import './Card.css';
+import CardButtons from '../CardButtons/CardButtons';
 
 const Card = ({ item, onClickLeft, onClickRight, onDelete, updateTask }) => {
   return (
@@ -7,11 +8,12 @@ const Card = ({ item, onClickLeft, onClickRight, onDelete, updateTask }) => {
         value={item.text}
         onChange={(e) => updateTask(item, e.target.value)}
       />
-      <div className="card-buttons">
-        {onClickLeft && <button onClick={() => onClickLeft(item)}>{'<'}</button>}
-        {onClickRight && <button onClick={() => onClickRight(item)}>{'>'}</button>}
-        <button onClick={() => onDelete(item.id)}>X</button>
-      </div>
+      <CardButtons
+        item={item}
+        onClickLeft={onClickLeft}
+        onClickRight={onClickRight}
+        onDelete={onDelete}
+      />
     </div>
   );
 };
