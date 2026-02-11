@@ -1,0 +1,17 @@
+.board-item {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.board-item.selected {
+  background-color: #c8e6c9;
+}
+
+.board-item:hover {
+  background-color: #e0e0e0;
+}
+
+.board-item.selected:hover {
+  background-color: #c8e6c9;
+}

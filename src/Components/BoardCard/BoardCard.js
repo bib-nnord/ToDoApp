@@ -1,5 +1,5 @@
 import './BoardCard.css';
-import BoardCardButtons from '../CardButtons/CardButtons';
+import BoardCardButtons from '../BoardCardButtons/BoardCardButtons';
 
 const BoardCard = ({ key, item, onDelete, onUpdateBoard}) => {
   return (
