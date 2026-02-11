@@ -18,8 +18,21 @@ body {
   padding: 20px;
   max-width: 1400px;
   margin: 0 auto;
+  display: flex;
+  gap: 20px;
 }
 
+.sidePanel {
+  border-right: 3px solid black;
+  padding:10px;
+  display: block;
+
+}
+
+ul {
+  list-style: none;
+  margin-top: 25px;
+}
 .categories {
   display: flex;
   gap: 20px;
@@ -27,4 +40,9 @@ body {
 
 button {
   padding: 7px;
+}
+
+.board {
+  border-bottom: 2px solid #38ab3e;
+  min-height: 600px;
 }

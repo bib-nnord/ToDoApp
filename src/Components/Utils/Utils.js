@@ -5,6 +5,10 @@
     addFunction(prev => [...prev, {text: '', id: Date.now()}]);
   }
 
+   export function addBoard(addBoardFunction) {
+    addBoardFunction(prev => [...prev, {text: '', id: Date.now()}]);
+  }
+
   export function deleteTask(deleteFunction, id) {
         deleteFunction(prev => prev.filter(item => item.id !== id));
   }
