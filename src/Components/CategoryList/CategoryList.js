@@ -1,7 +1,7 @@
 import './CategoryList.css';
 import { useState } from 'react';
 
-const CategoryList = ({ board, addCategory, deleteCategory }) => {
+const CategoryList = ({ categoryList, selectedBoard, addCategory, deleteCategory,updateCategory }) => {
   const [categoryName, setCategoryName] = useState('');
 
   const handleAdd = () => {
@@ -11,6 +11,7 @@ const CategoryList = ({ board, addCategory, deleteCategory }) => {
 
   return (
     <div className="board">
+        {selectedBoard.text}
     </div>
   );
 };

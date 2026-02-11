@@ -30,7 +30,7 @@ function App() {
         {selectedBoard && (
         <CategoryList
           categoryList = {categories}
-          selectedBoard = {selectedBoardId}
+          selectedBoard = {selectedBoard}
           addCategory={(categoryName) => addBoard(setCategories, categoryName)}
           deleteCategory={(id) => onDelete(setCategories, id)}
           updateCategory={(category, newText) => onUpdate(category, setCategories, newText)}
