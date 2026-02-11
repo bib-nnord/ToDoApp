@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import Category from './Components'
+import CategoryList from './Components/CategoryList/CategoryList';
 import { addTask, onDelete, moveTask, onUpdate, addBoard, SidePanel, deleteBoard, updateBoard} from './Components'
 // react state, context and nodejs, 3 branches
 
@@ -25,16 +26,15 @@ function App() {
           selectBoard={setSelectedBoardId}
           selectedBoardId={selectedBoardId}
           />
-                {selectedBoard && (
-        <div className="board">
-          <h1>{selectedBoard.text}</h1>
-          Categories TODO
-        </div>
-      )}
-      
+
         {selectedBoard && (
-        <CategoryList>
-        </CategoryList>
+        <CategoryList
+          categoryList = {categories}
+          selectedBoard = {selectedBoardId}
+          addCategory={(categoryName) => addBoard(setCategories, categoryName)}
+          deleteCategory={(id) => onDelete(setCategories, id)}
+          updateCategory={(category, newText) => onUpdate(category, setCategories, newText)}
+        />
       )}
       </div>
     </>
