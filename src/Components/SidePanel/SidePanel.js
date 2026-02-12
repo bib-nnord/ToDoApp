@@ -1,16 +1,9 @@
 import BoardCard from "../BoardCard/BoardCard";
-import { useState } from "react";
+import SidePanelButtons from "../SidePanelButtons/SidePanelButtons";
 
-const SidePanel = ({ boardList, addBoard, deleteBoard, updateBoard, selectBoard, selectedBoardId}) => {
-    const [newBoardText, setNewBoardText] = useState("");
-    
-    const handleAddBoard = () => {
-      addBoard(newBoardText);
-      setNewBoardText("");
-    };
-    
-    return (
-    <div className="sidepanel">
+const SidePanel = ({ boardList, addBoard, deleteBoard, updateBoard, selectBoard, selectedBoardId }) => {
+  return (
+    <div className="sidePanel">
       <ul>
         {boardList.map((item) => (
           <li
@@ -26,12 +19,8 @@ const SidePanel = ({ boardList, addBoard, deleteBoard, updateBoard, selectBoard,
           </li>
         ))}
       </ul>
-        <textarea
-            value={newBoardText}
-            onChange={(e) => setNewBoardText(e.target.value)}
-            placeholder="New board"
-        />
-      <button onClick={() => handleAddBoard()}>+</button>
+
+      <SidePanelButtons addBoard={addBoard} />
     </div>
   );
 };
