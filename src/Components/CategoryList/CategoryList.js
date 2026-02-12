@@ -1,15 +1,8 @@
 import './CategoryList.css';
-import { useState } from 'react';
 import Category from '../Category/Category';
-import { moveTask, onDelete, onUpdate, addTask } from '../Utils/Utils';
+import CategoryListButtons from '../CategoryListButtons/CategoryListButtons';
 
 const CategoryList = ({ categoryList, selectedBoard, addCategory, deleteCategory, updateCategory, updateCategoryTasks }) => {
-  const [categoryName, setCategoryName] = useState('');
-
-  const handleAdd = () => {
-    addCategory(categoryName);
-    setCategoryName('');
-  };
 
   return (
     <div>
@@ -34,12 +27,8 @@ const CategoryList = ({ categoryList, selectedBoard, addCategory, deleteCategory
         />
       ))}
       </div>
-      <textarea
-        value={categoryName}
-        onChange={(e) => setCategoryName(e.target.value)}
-        placeholder="New Category"
-      />
-      <button onClick={() => handleAdd()}>+</button>
+
+      <CategoryListButtons addCategory={addCategory} />
     </div>
   );
 };

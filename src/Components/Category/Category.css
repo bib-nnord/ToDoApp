@@ -4,6 +4,7 @@
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   min-width: 250px;
+  min-height: 500px;
 }
 
 .category:nth-child(1) h2 {

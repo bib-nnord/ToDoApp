@@ -1,0 +1,7 @@
+.card-buttons {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+}

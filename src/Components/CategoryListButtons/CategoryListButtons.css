@@ -1,0 +1,7 @@
+.categorylist-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 15px;
+  border-top: solid black;
+}
