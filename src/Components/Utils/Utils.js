@@ -1,9 +1,5 @@
 import React from "react";
 
- export function addTask(addFunction) {
-    addFunction(prev => [...prev, {text: '', id: Date.now()}]);
-  }
-
    export function addBoard(addBoardFunction, boardText, categories) {
     addBoardFunction(prev => [...prev, {text: boardText, id: Date.now(), categories}]);
   }

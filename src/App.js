@@ -23,16 +23,18 @@ function App() {
           selectedBoardId={selectedBoardId}
           />
 
-        {selectedBoard && (
-        <CategoryList
-          categoryList = {selectedBoard.categories}
-          selectedBoard = {selectedBoard}
-          addCategory={(categoryName) => addCategory(setBoards, selectedBoardId, categoryName)}
-          deleteCategory={(categoryId) => deleteCategory(setBoards, selectedBoardId, categoryId)}
-          updateCategory={(category, newText) => updateCategory(setBoards, selectedBoardId, category, newText)}
-          updateCategoryTasks={(categoryId, updateFn) => updateCategoryTasks(setBoards, selectedBoardId, categoryId, updateFn)}
-        />
-      )}
+        <div className="board">
+          {selectedBoard && (
+            <CategoryList
+              categoryList={selectedBoard.categories}
+              selectedBoard={selectedBoard}
+              addCategory={(categoryName) => addCategory(setBoards, selectedBoardId, categoryName)}
+              deleteCategory={(categoryId) => deleteCategory(setBoards, selectedBoardId, categoryId)}
+              updateCategory={(category, newText) => updateCategory(setBoards, selectedBoardId, category, newText)}
+              updateCategoryTasks={(categoryId, updateFn) => updateCategoryTasks(setBoards, selectedBoardId, categoryId, updateFn)}
+            />
+          )}
+        </div>
       </div>
     </>
   );

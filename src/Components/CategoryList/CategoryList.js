@@ -12,7 +12,7 @@ const CategoryList = ({ categoryList, selectedBoard, addCategory, deleteCategory
   };
 
   return (
-    <div className="board">
+    <div>
       {selectedBoard.text}
       {categoryList.map((item, index) => (
         <Category
