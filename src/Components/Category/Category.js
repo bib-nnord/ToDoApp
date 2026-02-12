@@ -1,7 +1,7 @@
 import './Category.css';
 import Card from '../Card/Card';
 
-const Category = ({ title, category, onClickLeft, onClickRight, onDelete, updateTask, addTask, categorytext }) => {
+const Category = ({ title, category, onClickLeft, onClickRight, onDelete, updateTask, addTask}) => {
   return (
     <div className="category">
       <h2>{title}</h2>
@@ -15,7 +15,7 @@ const Category = ({ title, category, onClickLeft, onClickRight, onDelete, update
           updateTask={updateTask}
         />
       ))}
-      <button onClick={() => addTask(categorytext)}>Add Item</button>
+      <button onClick={() => addTask(title)}>Add Item</button>
     </div>
   );
 };
