@@ -4,6 +4,7 @@ import SidePanelButtons from "../SidePanelButtons/SidePanelButtons";
 const SidePanel = ({ boardList, addBoard, deleteBoard, updateBoard, selectBoard, selectedBoardId }) => {
   return (
     <div className="sidePanel">
+     <h3>Boards:</h3> 
       <ul>
         {boardList.map((item) => (
           <li
