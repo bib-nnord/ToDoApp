@@ -53,3 +53,9 @@ button {
   border-right: 2px solid #ccc;
   padding-right: 20px;
 }
+
+.category-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}

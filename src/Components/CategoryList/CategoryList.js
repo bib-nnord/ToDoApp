@@ -14,6 +14,7 @@ const CategoryList = ({ categoryList, selectedBoard, addCategory, deleteCategory
   return (
     <div>
       {selectedBoard.text}
+      <div className="category-list">
       {categoryList.map((item, index) => (
         <Category
           key={item.id}
@@ -32,7 +33,7 @@ const CategoryList = ({ categoryList, selectedBoard, addCategory, deleteCategory
           addTask={() => updateCategoryTasks(item.id, prev => [...prev, { text: '', id: Date.now() }])}
         />
       ))}
-
+      </div>
       <textarea
         value={categoryName}
         onChange={(e) => setCategoryName(e.target.value)}
