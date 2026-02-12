@@ -1,0 +1,6 @@
+.card h3 {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  min-width: 0;
+  flex: 1;
+}

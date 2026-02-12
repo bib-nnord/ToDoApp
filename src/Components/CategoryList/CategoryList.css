@@ -4,3 +4,7 @@
   flex-wrap: nowrap;
   overflow-x: auto;
 }
+
+h2 {
+    padding:20px;
+}
