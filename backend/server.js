@@ -1,4 +1,3 @@
-
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -33,30 +32,21 @@ const server = http.createServer((req, res) => {
     });
   }
 
-  // POST /boards - save new board
+  // POST /boards 
   else if (req.url === '/boards' && req.method === 'POST') {
     let body = '';
     req.on('data', chunk => { body += chunk; });
     req.on('end', () => {
       try {
-        const newBoard = JSON.parse(body);
-        fs.readFile(DATA_FILE, (err, data) => {
+        const boards = JSON.parse(body);
+        fs.writeFile(DATA_FILE, JSON.stringify(boards, null, 2), err => {
           if (err) {
             res.writeHead(500, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ error: 'Failed to read boards' }));
+            res.end(JSON.stringify({ error: 'Failed to save boards' }));
             return;
           }
-          const boards = JSON.parse(data);
-          boards.push(newBoard);
-          fs.writeFile(DATA_FILE, JSON.stringify(boards, null, 2), err => {
-            if (err) {
-              res.writeHead(500, { 'Content-Type': 'application/json' });
-              res.end(JSON.stringify({ error: 'Failed to save board' }));
-              return;
-            }
-            res.writeHead(201, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify(newBoard));
-          });
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ success: true }));
         });
       } catch (e) {
         res.writeHead(400, { 'Content-Type': 'application/json' });

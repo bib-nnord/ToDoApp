@@ -1,12 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Category from './Components'
 import CategoryList from './Components/CategoryList/CategoryList';
-import { addTask, onDelete, moveTask, onUpdate, addBoard, addCategory, deleteCategory, updateCategory, updateCategoryTasks, SidePanel } from './Components'
+import { addTask, onDelete, moveTask, onUpdate, addBoard, addCategory, deleteCategory, updateCategory, updateCategoryTasks, SidePanel, saveAsJson } from './Components'
 
 function App() {
 
   const [boards, setBoards] = useState([]);
+  //pull
+  useEffect(() => {
+    fetch('http://localhost:2000/boards')
+      .then(res => res.json())
+      .then(setBoards)
+      .catch(console.error);
+  }, []);
+
+  //push
+  useEffect(() => {
+    if (boards.length > 0) {
+      saveAsJson(boards);
+    }
+  }, [boards]);
+
   const [selectedBoardId, setSelectedBoardId] = useState(null);
 
   const selectedBoard = boards.find(board => board.id === selectedBoardId) || null;
