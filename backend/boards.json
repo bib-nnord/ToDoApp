@@ -2,6 +2,42 @@
   {
     "text": "weafaef",
     "id": 1770981782634,
+    "categories": [
+      {
+        "text": "sefgsegseg",
+        "id": 1771232605935,
+        "tasks": [
+          {
+            "text": "sefsefes",
+            "id": 1771232608070
+          },
+          {
+            "text": "",
+            "id": 1771232609236
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Unnamed Board",
+    "id": 1771232620502,
+    "categories": []
+  },
+  {
+    "text": "Unnamed Board",
+    "id": 1771232620935,
+    "categories": [
+      {
+        "text": "",
+        "id": 1771232670921,
+        "tasks": []
+      }
+    ]
+  },
+  {
+    "text": "Unnamed Board",
+    "id": 1771232621369,
     "categories": []
   }
 ]
